@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yusuf Khader Hijab - Portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css"> 
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/icon.png" type="image/png">
+    
+    <!-- Custom JavaScript -->
+    <script src="script.js" defer></script>
+
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(50%);
+        }
+        .menu {
+            position: fixed;
+            top: 50%;
+            left: 1rem;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1rem;
+            border-radius: 0.625rem;
+            width: 3.125rem;
+            transition: width 0.3s ease;
+            text-align: center;
+        }
+        .menu:hover {
+            width: 12.5rem;
+        }
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            padding: 0.625rem;
+            color: white;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .menu-text {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .menu:hover .menu-text {
+            opacity: 1;
+        }
+        .content-section {
+            display: none;
+            text-align: center;
+            margin-top: 5rem;
+        }
+        .active {
+            display: block;
+        }
+        .code-editor {
+            background: black;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            border-radius: 8px;
+            padding: 15px;
+            width: 90%;
+            height: 200px;
+            margin: auto;
+            border: 2px solid #00ff00;
+        }
+        .run-button {
+            background-color: #00ff00;
+            color: black;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .run-button:hover {
+            background-color: #008000;
+        }
+        .search-container input, .search-container button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 0.5rem 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Home Button -->
+    <div class="flex justify-between items-center p-4 bg-black">
+        <a href="#home" class="text-green-500 font-bold text-lg" onclick="showHome()">Home</a>
+    </div>
+
+    <!-- Video Background -->
+    <video class="video-bg" autoplay loop muted playsinline>
+        <source src="assets/background.mp4" type="video/mp4">
+    </video>
+
+    <!-- Sidebar Menu -->
+    <div class="menu">
+        <a onclick="showSection('about')" class="menu-item">
+            <i class="fas fa-user"></i>
+            <span class="menu-text">About Me</span>
+        </a>
+        <a onclick="showSection('projects')" class="menu-item">
+            <i class="fas fa-code"></i>
+            <span class="menu-text">Projects</span>
+        </a>
+        <a onclick="showSection('contact')" class="menu-item">
+            <i class="fas fa-envelope"></i>
+            <span class="menu-text">Contact</span>
+        </a>
+        <a href="https://www.instagram.com/yusuf.hijab/" class="menu-item">
+            <i class="fab fa-instagram"></i>
+            <span class="menu-text">Instagram</span>
+        </a>
+    </div>
+
+    <!-- Home Section -->
+    <div id="home" class="content-section active">
+        <h1 class="text-5xl font-bold">Yusuf Khader Hijab</h1>
+        <p>Software Engineer | Tech Enthusiast</p>
+        <div class="search-container">
+            <input type="text" id="searchQuery" placeholder="Search Google...">
+            <button onclick="performSearch()">Search</button>
+        </div>
+        <h2>Try Coding!</h2>
+        <textarea id="codeInput" class="code-editor">// JavaScript code here...</textarea>
+        <button class="run-button" onclick="runCode()">Run Code</button>
+        <p id="runMessage"></p>
+    </div>
+
+    <!-- About Section -->
+    <div id="about" class="content-section">
+        <h2>About Me</h2>
+        <div class="flex flex-col items-center bg-black p-8 rounded-lg">
+            <img src="assets/yusuf_photo.jpg" alt="Yusuf" class="rounded-full w-48 h-48 mb-4">
+            <p class="text-green-500 text-lg typing-text">Passionate about technology, creating websites, and future tech.</p>
+        </div>
+    </div>
+
+    <!-- Projects Section -->
+    <div id="projects" class="content-section">
+        <h2 class="text-4xl font-bold mb-8">Projects & Articles</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="p-6 bg-gray-800 rounded-lg shadow-lg hover:scale-105 transition-transform">
+                <h3 class="text-2xl font-semibold">Portfolio Website</h3>
+                <p class="text-gray-300">Showcasing skills using HTML, CSS, and JS.</p>
+                <a href="#" class="text-green-500 font-bold hover:underline">View Project</a>
+            </div>
+            <div class="p-6 bg-gray-800 rounded-lg shadow-lg hover:scale-105 transition-transform">
+                <h3 class="text-2xl font-semibold">Web Development Trends</h3>
+                <p class="text-gray-300">Latest trends and technologies in web development.</p>
+                <a href="#" class="text-green-500 font-bold hover:underline">Read Article</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="content-section">
+        <h2>Contact Me</h2>
+        <div>
+            <p>Email: yusufhijab.2003@gmail.com</p>
+            <p>Phone: +39 350 921 3266</p>
+            <button onclick="getLocation()" class="run-button">Show My Location</button>
+            <a href="assets/Yusuf_Khader_Hijab_CV.pdf" class="run-button" download>Download CV</a>
+        </div>
+    </div>
+
+<script>
+    function performSearch() {
+        const query = document.getElementById("searchQuery").value;
+        if (query) {
+            window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+        } else {
+            alert("Please enter a search query.");
+        }
+    }
+</script>
+
+</body>
+</html>
